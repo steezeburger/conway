@@ -4,8 +4,9 @@
 <head>
   <title>Conway's Game of Life</title>
 
-  <!-- Styles -->
+  <!-- Styles and Fonts -->
   <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 
   <!-- External JS -->
   <script src="http://code.createjs.com/easeljs-0.8.0.min.js"></script>
@@ -16,27 +17,11 @@
 
 </head>
 
-<body>
-
+<body class="center">
 
   <h1>Conway's Game of Life</h1>
-   <canvas id="gameController" width="512" height="512">
-
-   </canvas>
-
-<!--
-  <form id="createGrid" method="POST">
-    <p>Grid size:</p>
-    <input id="gridSize" type="number"
-    min="10" max="100" step="10"
-    value="10">
-    <input type="submit" value="Create Grid">
-    <p>Minimum of 10x10</p>
-    <p>Maximum of 100x100</p>
-  </form>
--->
-
-
+  <h3>Create live cells by clicking anywhere on the grid. Click start to see the evolution.</h3>
+   <div class="center"><canvas id="gameController" width="500" height="500"></canvas></div>
 
 </body>
 

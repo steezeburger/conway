@@ -60,7 +60,7 @@ function Conway(length) {
         } else {
           square.push([]);
           square[i][j] = new createjs.Shape();
-          square[i][j].graphics.beginFill('black')
+          square[i][j].graphics.beginFill('#666666')
             .beginStroke("#999999")
             .drawRect(0, 0, 10, 10);
           square[i][j].x = i * 10;
@@ -83,7 +83,7 @@ function Conway(length) {
         conway.cells[x][y] = conway.dead;
         square.graphics.clear();
         square = new createjs.Shape();
-        square.graphics.beginFill('#black')
+        square.graphics.beginFill('#666666')
           .beginStroke("#999999")
           .drawRect(0, 0, 10, 10);
         square.x = x * 10;
