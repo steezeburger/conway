@@ -44,29 +44,32 @@ function Conway(length) {
         if (conway.cells[i][j] == conway.alive) {
           square = new createjs.Shape();
           square.graphics.beginFill('#00ff99')
-            .drawRect(0, 0, 8, 8);
-          square.x = i * 8;
-          square.y = j * 8;
+          .beginStroke("#999999")
+          .drawRect(0, 0, 10, 10);
+          square.x = i * 10;
+          square.y = j * 10;
           conway.stage.addChild(square);
           console.log('square added at ' + i + ' ' + j);
         } else {
           square = new createjs.Shape();
           square.graphics.beginFill('black')
-            .drawRect(0, 0, 8, 8);
-          square.x = i * 8;
-          square.y = j * 8;
+            .beginStroke("#999999")
+            .drawRect(0, 0, 10, 10);
+          square.x = i * 10;
+          square.y = j * 10;
           conway.stage.addChild(square);
           console.log('square added at ' + i + ' ' + j);
         }
       }
     }
+    // updates easeljs stage
     conway.stage.update();
   }; // conway.draw()
 }
 
 $(document).ready(function () {
   console.log('ready');
-  
+
   // create new Conway object
   var gameController = new Conway(50);
   // initalize to all dead cells
