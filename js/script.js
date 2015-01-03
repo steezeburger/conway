@@ -110,24 +110,6 @@ function Conway(length) {
     }
   }; // conway.addCellAt()
 
-  conway.removeCellAt = function (x, y, square) {
-    return function () {
-      console.log("you clicked " + x + ' ' + y);
-      // Set cells[x][y] = dead
-      conway.cells[x][y] = conway.dead;
-      // Create new square of different color
-      square.graphics.clear();
-      square = new createjs.Shape();
-      square.graphics.beginFill('black')
-        .beginStroke("#999999")
-        .drawRect(0, 0, 10, 10);
-      square.x = x * 10;
-      square.y = y * 10;
-      conway.stage.addChild(square);
-      conway.stage.update();
-    }
-  }; // conway.removeCellAt()
-
 } // Conway
 
 $(document).ready(function () {
