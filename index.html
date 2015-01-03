@@ -9,14 +9,35 @@
 
   <!-- External JS -->
   <script src="http://code.createjs.com/easeljs-0.8.0.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
   <!-- Custom JS -->
   <script src="js/script.js"></script>
 
 </head>
 
-<body onload="init()">
-  <canvas id="main" width="600" height="600"></canvas>
+<body>
+
+
+  <h1>Conway's Game of Life</h1>
+   <canvas id="gameController" width="512" height="512">
+
+   </canvas>
+
+<!--
+  <form id="createGrid" method="POST">
+    <p>Grid size:</p>
+    <input id="gridSize" type="number"
+    min="10" max="100" step="10"
+    value="10">
+    <input type="submit" value="Create Grid">
+    <p>Minimum of 10x10</p>
+    <p>Maximum of 100x100</p>
+  </form>
+-->
+
+
+
 </body>
 
 </html>
