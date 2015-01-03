@@ -74,12 +74,11 @@ function Conway(length) {
     conway.stage.update();
   }; // conway.draw()
 
+  // Toggle cell's life state and color
+  //  using closures to save indices of the iterations
   conway.toggleCellAt = function (x, y, square) {
     return function () {
-      console.log("you clicked " + x + ' ' + y);
-      // Toggle cell's life state and color
       if (conway.cells[x][y] === conway.alive) {
-        console.log('toggled dead');
         // Toggle to dead and black
         conway.cells[x][y] = conway.dead;
         square.graphics.clear();
@@ -93,7 +92,6 @@ function Conway(length) {
         conway.stage.addChild(square);
         conway.stage.update();
       } else {
-        console.log('toggled bright');
         // Toggle to alive and bright
         conway.cells[x][y] = conway.alive;
         square.graphics.clear();
