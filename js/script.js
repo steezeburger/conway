@@ -1,13 +1,16 @@
 // Conway Object Constructor
 //  Creates new Conway's GoL object with length of
-//  the square grid. Game controller
+//  the square grid.
+// Game controller
 function Conway(length) {
   var conway = this;
+
+  //
   conway.stage = null;
   conway.alive = 1;
   conway.dead = 0;
 
-  // always a square
+  // Always a square
   conway.width = conway.height = length;
 
   // Empty 2D array representing each cell
@@ -17,7 +20,9 @@ function Conway(length) {
   //  y increasing downwards
   conway.cells = [];
 
-  // initialize empty (dead) 2D array
+  // Methods
+
+  // Initially iinitialize empty (dead) 2D array initially
   conway.init = function () {
     var i, j, cell;
     conway.cells = [];
@@ -31,52 +36,110 @@ function Conway(length) {
     }
   }; // conway.init()
 
-  // initialize initially
-  // TODO: init on submission of gridSize form
-  //  conway.init();
 
   // Draws grid to screen using easeljs
-  //  Draws dead and live cells at different colors
+  //  Draws dead and live cells w/ different colors
   conway.draw = function () {
-    var i, j, square;
+    var i, j;
+    var square = [];
     for (i = 0; i < length; i++) {
       for (j = 0; j < length; j++) {
+        //  Creates new easeljs square at coordinates
+        //  corresponding to current location in array.
+        //  Adds child shape to easeljs stage
         if (conway.cells[i][j] == conway.alive) {
-          square = new createjs.Shape();
-          square.graphics.beginFill('#00ff99')
-          .beginStroke("#999999")
-          .drawRect(0, 0, 10, 10);
-          square.x = i * 10;
-          square.y = j * 10;
-          conway.stage.addChild(square);
-          console.log('square added at ' + i + ' ' + j);
-        } else {
-          square = new createjs.Shape();
-          square.graphics.beginFill('black')
+          square.push([]);
+          square[i][j] = new createjs.Shape();
+          square[i][j].graphics.beginFill('#00ff99')
             .beginStroke("#999999")
             .drawRect(0, 0, 10, 10);
-          square.x = i * 10;
-          square.y = j * 10;
-          conway.stage.addChild(square);
-          console.log('square added at ' + i + ' ' + j);
+          square[i][j].x = i * 10;
+          square[i][j].y = j * 10;
+          conway.stage.addChild(square[i][j]);
+          square[i][j].addEventListener("click", conway.toggleCellAt(i, j, square[i][j]));
+        } else {
+          square.push([]);
+          square[i][j] = new createjs.Shape();
+          square[i][j].graphics.beginFill('black')
+            .beginStroke("#999999")
+            .drawRect(0, 0, 10, 10);
+          square[i][j].x = i * 10;
+          square[i][j].y = j * 10;
+          conway.stage.addChild(square[i][j]);
+          square[i][j].addEventListener("click", conway.toggleCellAt(i, j, square[i][j]));
         }
       }
     }
-    // updates easeljs stage
+    // Updates easeljs stage
     conway.stage.update();
   }; // conway.draw()
-}
+
+  conway.toggleCellAt = function (x, y, square) {
+    return function () {
+      console.log("you clicked " + x + ' ' + y);
+      // Toggle cell's life state and color
+      if (conway.cells[x][y] === conway.alive) {
+        console.log('toggled dead');
+        // Toggle to dead and black
+        conway.cells[x][y] = conway.dead;
+        square.graphics.clear();
+        square = new createjs.Shape();
+        square.graphics.beginFill('#black')
+          .beginStroke("#999999")
+          .drawRect(0, 0, 10, 10);
+        square.x = x * 10;
+        square.y = y * 10;
+        square.addEventListener("click", conway.toggleCellAt(x, y, square));
+        conway.stage.addChild(square);
+        conway.stage.update();
+      } else {
+        console.log('toggled bright');
+        // Toggle to alive and bright
+        conway.cells[x][y] = conway.alive;
+        square.graphics.clear();
+        square = new createjs.Shape();
+        square.graphics.beginFill('#00ff99')
+          .beginStroke("#999999")
+          .drawRect(0, 0, 10, 10);
+        square.x = x * 10;
+        square.y = y * 10;
+        square.addEventListener("click", conway.toggleCellAt(x, y, square));
+        conway.stage.addChild(square);
+        conway.stage.update();
+      }
+    }
+  }; // conway.addCellAt()
+
+  conway.removeCellAt = function (x, y, square) {
+    return function () {
+      console.log("you clicked " + x + ' ' + y);
+      // Set cells[x][y] = dead
+      conway.cells[x][y] = conway.dead;
+      // Create new square of different color
+      square.graphics.clear();
+      square = new createjs.Shape();
+      square.graphics.beginFill('black')
+        .beginStroke("#999999")
+        .drawRect(0, 0, 10, 10);
+      square.x = x * 10;
+      square.y = y * 10;
+      conway.stage.addChild(square);
+      conway.stage.update();
+    }
+  }; // conway.removeCellAt()
+
+} // Conway
 
 $(document).ready(function () {
   console.log('ready');
 
-  // create new Conway object
+  // Create new Conway object
   var gameController = new Conway(50);
-  // initalize to all dead cells
+  // Initalize to all dead cells
   gameController.init();
-  // create stage for easeljs
+  // Create stage for easeljs
   gameController.stage = new createjs.Stage("gameController");
-  // draw all dead squares to stage
+  // Draw all squares to stage
   gameController.draw();
 
 });
