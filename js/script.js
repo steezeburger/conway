@@ -56,6 +56,7 @@ function Conway(length) {
           square[i][j].x = i * 10;
           square[i][j].y = j * 10;
           conway.stage.addChild(square[i][j]);
+          // calls toggleCellAt on click
           square[i][j].addEventListener("click", conway.toggleCellAt(i, j, square[i][j]));
         } else {
           square.push([]);
@@ -72,6 +73,7 @@ function Conway(length) {
     }
     // Updates easeljs stage
     conway.stage.update();
+    console.log('grid drawn');
   }; // conway.draw()
 
   // Toggle cell's life state and color
@@ -105,21 +107,77 @@ function Conway(length) {
         conway.stage.addChild(square);
         conway.stage.update();
       }
-    }
+    };
   }; // conway.addCellAt()
+
+
+  // Returns number of live neighbors
+  conway.getNeighborCount = function (x, y) {
+
+    var count = 0;
+    // Adds to count if any of the surrounding cells are alive
+    if (conway.cells[x - 1][y - 1]) count++;
+    if (conway.cells[x - 1][y]) count++;
+    if (conway.cells[x + 1][y - 1]) count++;
+    if (conway.cells[x][y - 1]) count++;
+    if (conway.cells[x][y + 1]) count++;
+    if (conway.cells[x + 1][y - 1]) count++;
+    if (conway.cells[x + 1][y]) count++;
+    if (conway.cells[x + 1][y + 1]) count++;
+
+    console.log('count is: ' + count, x, y);
+    return count;
+
+  }; // conway.getNeighborCount()
+
+  conway.createOrDestroy = function (x, y) {
+    // if alive
+    if (conway.cells[x][y]) {
+      // if live neighbors < 2
+      if (conway.getNeighborCount(x, y) < 2) {
+        conway.cells[x][y] = conway.dead;
+      }
+      // if live neighbors > 3
+      if (conway.getNeighborCount(x, y) > 3) {
+        conway.cells[x][y] = conway.dead;
+      }
+    }
+    // if dead and exactly 3 neighbors, regenerate
+    if (!conway.cells[x][y] && (conway.getNeighborCount === 3)) {
+      conway.cells[x][y] = conway.alive;
+    }
+  }; // conway.createOrDestroy()
+
+  // Updates conway.cells array
+  conway.updateAll = function () {
+    var i, j;
+    // Traverses every square and sets it alive or dead based on GoL rules
+    for (i = 0; i < length; i++) {
+      for (j = 0; j < length; j++) {
+        conway.createOrDestroy(i, j);
+//        console.log(i,j,'equal to ',conway.cells[i][j]);
+      }
+    }
+    console.log('updated grid');
+  }; // conway.updateAll()
 
 } // Conway
 
 $(document).ready(function () {
-  console.log('ready');
+    console.log('ready');
 
-  // Create new Conway object
-  var gameController = new Conway(50);
-  // Initalize to all dead cells
-  gameController.init();
-  // Create stage for easeljs
-  gameController.stage = new createjs.Stage("gameController");
-  // Draw all squares to stage
-  gameController.draw();
+    // Create new Conway object
+    var gameController = new Conway(10);
+    // Initalize to all dead cells
+    gameController.init();
+    // Create stage for easeljs
+    gameController.stage = new createjs.Stage("gameController");
+    // Draw all squares to stage
+    gameController.draw();
+
+    $('#startButton').click(function () {
+        gameController.updateAll();
+        gameController.draw();
+    });
 
 });
