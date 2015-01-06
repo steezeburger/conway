@@ -33,6 +33,46 @@ function Conway(length) {
     return cells;
   }; // conway.newEmptyArray()
 
+  conway.newGosperGliderGun = function () {
+    var gliderCells = conway.newEmptyArray();
+    gliderCells[2][5] = conway.alive;
+    gliderCells[2][6] = conway.alive;
+    gliderCells[3][5] = conway.alive;
+    gliderCells[3][6] = conway.alive;
+    gliderCells[12][5] = conway.alive;
+    gliderCells[12][6] = conway.alive;
+    gliderCells[12][7] = conway.alive;
+    gliderCells[13][4] = conway.alive;
+    gliderCells[13][8] = conway.alive;
+    gliderCells[14][3] = conway.alive;
+    gliderCells[14][9] = conway.alive;
+    gliderCells[15][3] = conway.alive;
+    gliderCells[15][9] = conway.alive;
+    gliderCells[16][6] = conway.alive;
+    gliderCells[17][4] = conway.alive;
+    gliderCells[17][8] = conway.alive;
+    gliderCells[18][5] = conway.alive;
+    gliderCells[18][6] = conway.alive;
+    gliderCells[18][7] = conway.alive;
+    gliderCells[19][6] = conway.alive;
+    gliderCells[22][3] = conway.alive;
+    gliderCells[22][4] = conway.alive;
+    gliderCells[22][5] = conway.alive;
+    gliderCells[23][3] = conway.alive;
+    gliderCells[23][4] = conway.alive;
+    gliderCells[23][5] = conway.alive;
+    gliderCells[24][2] = conway.alive;
+    gliderCells[24][6] = conway.alive;
+    gliderCells[26][1] = conway.alive;
+    gliderCells[26][2] = conway.alive;
+    gliderCells[26][6] = conway.alive;
+    gliderCells[26][7] = conway.alive;
+    gliderCells[36][3] = conway.alive;
+    gliderCells[36][4] = conway.alive;
+    gliderCells[37][3] = conway.alive;
+    gliderCells[37][4] = conway.alive;
+    return gliderCells;
+  };
 
   // Draws grid to screen using easeljs (side effects only)
   //  Draws dead and live cells w/ different colors
@@ -180,33 +220,34 @@ $(document).ready(function () {
   var gameController = new Conway(50);
   // Initalize to all dead cells
   var cells = gameController.newEmptyArray();
+//  var cells = gameController.newGosperGliderGun();
   // Create stage for easeljs as well as ticker
   gameController.stage = new createjs.Stage("gameController");
 
   // Draw all empty squares to stage
   gameController.draw(cells);
 
-  // tick handler
-  function handleTick(event) {
+  // Tick event handler
+  function updateAndDraw(event) {
     if (!event.paused) {
       cells = gameController.updateAll(cells);
       gameController.draw(cells);
     }
   }
 
-  // Button event listeners
-
+// Button event listeners
   // Start
   $('#startButton').click(function () {
-    // Create event ticker, add handleTick() as callback
-    createjs.Ticker.addEventListener("tick", handleTick);
+    // Create event ticker, add handleTick() as callback to be called every tick
+    createjs.Ticker.addEventListener("tick", updateAndDraw);
+    // Unpauses
     createjs.Ticker.paused = false;
-    createjs.Ticker.setInterval(1000);
+    // Interval of 1 Tick/1000ms
+    createjs.Ticker.setInterval(25);
 
   });
 
-  // Stop
-  // TODO currently not changing paused state
+  // Pause
   $('#pauseButton').click(function () {
     createjs.Ticker.paused = (!createjs.Ticker.paused) ? true : false ;
   });
@@ -221,9 +262,15 @@ $(document).ready(function () {
   // Clear
   $('#clearButton').click(function () {
     // Clears stage and redraws. Removes tick event listener
-    createjs.Ticker.removeEventListener("tick", handleTick);
+    createjs.Ticker.removeEventListener("tick", updateAndDraw);
     cells = gameController.newEmptyArray();
     gameController.draw(cells);
   });
+
+  $('#gosperGun').click(function () {
+    cells = gameController.newGosperGliderGun();
+    gameController.draw(cells);
+  });
+
 
 });
