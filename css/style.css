@@ -5,7 +5,17 @@ html {
   margin-left: auto;
   margin-right: auto;
 }
+
+button span {
+  padding: 10px 15px;
+  background: #999;
+  color: #666;
+}
+
 button {
+  border: 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
   padding-left: 0;
   padding-right: 0;
   margin-left: auto;
@@ -13,6 +23,7 @@ button {
   display: block;
 }
 canvas {
+  padding-top: 20px;
   padding-left: 0;
   padding-right: 0;
   margin-left: auto;
