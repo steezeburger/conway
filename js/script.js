@@ -35,6 +35,8 @@ function Conway(length) {
   // Draws grid to screen using easeljs (side effects only)
   //  Draws dead and live cells w/ different colors
   conway.draw = function (cellsArray) {
+    conway.stage.removeAllChildren();
+    conway.stage.update();
     var i, j;
     var square = [];
     for (i = 0; i < length; i++) {
@@ -68,7 +70,6 @@ function Conway(length) {
     }
     // Updates easeljs stage
     conway.stage.update();
-    console.log('grid drawn');
   }; // conway.draw()
 
   // Toggle cell's life state and color using closures
@@ -107,17 +108,14 @@ function Conway(length) {
 
 
   // Returns number of live neighbors of cell at x, y
-  // TODO: Take edges into account
   conway.getNeighborCount = function (cellsArray, x, y) {
     // Start count at 0
     var count = (cellsArray[x][y] == conway.alive) ? -1 : 0;
     // Adds to count if any of the surrounding cells are alive
-    // TODO: Toroidal wrapping. If at an edge, wrap around and check that square
+    // Traverses surrounding squares.
     // [x - 1][y - 1]  [x][y - 1]  [x + 1][y - 1]
     // [x - 1][y]      [x][y]      [x + 1][y]
     // [x - 1][y + 1]  [x][y + 1]  [x + 1][y + 1]
-
-    // Traverses surrounding squares. Check if alive
     for (var w = -1; w <= 1; w++) {
       for (var h = -1; h <= 1; h++) {
         if (cellsArray[(conway.width + (x + w)) % conway.width][(conway.height + (y + h)) % conway.height] == conway.alive) {
@@ -125,8 +123,6 @@ function Conway(length) {
         }
       }
     }
-
-    console.log('count is: ' + count, x, y);
     return count;
   }; // conway.getNeighborCount()
 
