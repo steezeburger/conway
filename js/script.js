@@ -109,7 +109,6 @@ function Conway(length) {
   // Returns number of live neighbors of cell at x, y
   // TODO: Take edges into account
   conway.getNeighborCount = function (cellsArray, x, y) {
-    console.log(cellsArray);
     // Start count at 0
     var count = (cellsArray[x][y] == conway.alive) ? -1 : 0;
     // Adds to count if any of the surrounding cells are alive
@@ -121,7 +120,7 @@ function Conway(length) {
     // Traverses surrounding squares. Check if alive
     for (var w = -1; w <= 1; w++) {
       for (var h = -1; h <= 1; h++) {
-        if (cellsArray[conway.width + (x + w) % conway.width][conway.height + (y + h) % conway.height] == conway.alive) {
+        if (cellsArray[(conway.width + (x + w)) % conway.width][(conway.height + (y + h)) % conway.height] == conway.alive) {
           count++;
         }
       }
@@ -133,7 +132,6 @@ function Conway(length) {
 
   // Returns 1 if square gets to live, returns 0 if square will die
   conway.createOrDestroy = function (cellsArray, x, y) {
-    console.log('checking at: ',x,y);
     // Dies if alive && N<2 || N>3
     // if alive
     if (cellsArray[x][y]) {
@@ -158,6 +156,7 @@ function Conway(length) {
 
   // Updates conway.cells array
   conway.updateAll = function (cellsArray) {
+    console.log(cellsArray);
     var i, j;
     var newCellArray = [];
     // Traverses every square and sets it alive or dead based on GoL rules
@@ -193,8 +192,8 @@ $(document).ready(function () {
   //
 
   $('#startButton').click(function () {
-    var newArray = gameController.updateAll(cells);
-    gameController.draw(newArray);
+    cells = gameController.updateAll(cells);
+    gameController.draw(cells);
   });
 
 });
