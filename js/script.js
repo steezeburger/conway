@@ -13,7 +13,9 @@ function Conway(length) {
   // Always a square
   conway.width = conway.height = length;
 
-  // Methods
+  //************
+  //** Methods
+  //************
 
   // Initially initialize empty (dead) 2D array initially
   // TODO: Add other common initial arrays e.g. glider gun, etc
@@ -152,7 +154,6 @@ function Conway(length) {
 
   // Updates conway.cells array
   conway.updateAll = function (cellsArray) {
-    console.log(cellsArray);
     var i, j;
     var newCellArray = [];
     // Traverses every square and sets it alive or dead based on GoL rules
@@ -166,29 +167,62 @@ function Conway(length) {
         }
       }
     }
-    console.log('updated grid');
-    //    console.log(newCellArray);
     return newCellArray;
   }; // conway.updateAll()
 
 } // Conway
 
+//**************
+//** DOM Ready
+//**************
 $(document).ready(function () {
-  console.log('ready');
-
   // Create new Conway object
   var gameController = new Conway(50);
   // Initalize to all dead cells
   var cells = gameController.newEmptyArray();
-  // Create stage for easeljs
+  // Create stage for easeljs as well as ticker
   gameController.stage = new createjs.Stage("gameController");
+
   // Draw all empty squares to stage
   gameController.draw(cells);
 
-  //
+  // tick handler
+  function handleTick(event) {
+    if (!event.paused) {
+      cells = gameController.updateAll(cells);
+      gameController.draw(cells);
+    }
+  }
 
+  // Button event listeners
+
+  // Start
   $('#startButton').click(function () {
+    // Create event ticker, add handleTick() as callback
+    createjs.Ticker.addEventListener("tick", handleTick);
+    createjs.Ticker.paused = false;
+    createjs.Ticker.setInterval(1000);
+
+  });
+
+  // Stop
+  // TODO currently not changing paused state
+  $('#pauseButton').click(function () {
+    createjs.Ticker.paused = (!createjs.Ticker.paused) ? true : false ;
+  });
+
+  // Step
+  $('#stepButton').click(function () {
+    // Updates stage and redraws
     cells = gameController.updateAll(cells);
+    gameController.draw(cells);
+  });
+
+  // Clear
+  $('#clearButton').click(function () {
+    // Clears stage and redraws. Removes tick event listener
+    createjs.Ticker.removeEventListener("tick", handleTick);
+    cells = gameController.newEmptyArray();
     gameController.draw(cells);
   });
 

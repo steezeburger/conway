@@ -2,25 +2,26 @@ html {
   font-family: 'Roboto', sans-serif;
 }
 .center {
+  text-align: center;
   margin-left: auto;
   margin-right: auto;
 }
 
 button span {
-  padding: 10px 15px;
+  padding: 6px 15px;
   background: #999;
   color: #666;
 }
 
 button {
+  display: inline-block;
   border: 0;
   padding-top: 5px;
   padding-bottom: 5px;
   padding-left: 0;
   padding-right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 canvas {
   padding-top: 20px;
