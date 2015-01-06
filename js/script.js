@@ -181,7 +181,7 @@ $(document).ready(function () {
   console.log('ready');
 
   // Create new Conway object
-  var gameController = new Conway(10);
+  var gameController = new Conway(50);
   // Initalize to all dead cells
   var cells = gameController.newEmptyArray();
   // Create stage for easeljs
