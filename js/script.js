@@ -1,3 +1,5 @@
+/* global window, document, jQuery, $, createjs */
+
 // Conway Object Constructor
 //  Creates new Conway's GoL object with length of
 //  the square grid.
@@ -17,8 +19,8 @@ function Conway(length) {
   //** Methods
   //************
 
+  // Pre-made formations
   // Initially initialize empty (dead) 2D array initially
-  // TODO: Add other common initial arrays e.g. glider gun, etc
   conway.newEmptyArray = function () {
     var i, j;
     var cells = [];
@@ -325,6 +327,7 @@ $(document).ready(function () {
   }
 
   // Button event listeners
+
   // Start
   $('#start-button').click(function () {
     // Create event ticker, add handleTick() as callback to be called every tick
@@ -332,7 +335,7 @@ $(document).ready(function () {
     // Unpauses
     createjs.Ticker.paused = false;
     // Interval of 1 Tick/1000ms
-    createjs.Ticker.setInterval(25);
+    createjs.Ticker.setInterval(250);
 
   });
 
@@ -356,16 +359,19 @@ $(document).ready(function () {
     gameController.draw(cells);
   });
 
+  // Gosper Gun
   $('#gosper-gun').click(function () {
     cells = gameController.newGosperGliderGun();
     gameController.draw(cells);
   });
 
+  // Pentadecathlon
   $('#pent-osc').click(function () {
     cells = gameController.newPentadecathlon();
     gameController.draw(cells);
   });
 
+  // Kok Galaxy
   $('#kok-galaxy').click(function () {
     cells = gameController.newKokGalaxy();
     gameController.draw(cells);
