@@ -2,4 +2,4 @@
 #### Created with Javascript, HTML, CSS, and EaselJS
 [Can be seen here](http://steezeburger.github.io/conway)
 
-To see the unit test results, download the code and simply open "test/tests.html" in your browser of choice or point your browser to http://steezeburger.github.io/conway/tests/test.html
+To see the unit test results, download the code and simply open "test/tests.html" in your browser of choice or point your browser to http://steezeburger.github.io/conway/tests/tests.html
