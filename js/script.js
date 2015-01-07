@@ -101,7 +101,68 @@ function Conway(length) {
     pentCells[17][11] = conway.alive;
     pentCells[17][12] = conway.alive;
     return pentCells;
-  }
+  }; // conway.newPentadecathlon()
+
+  // Generate Pentadecathlon formation
+  conway.newKokGalaxy = function () {
+    var kokCells = conway.newEmptyArray();
+    kokCells[10][10] = conway.alive;
+    kokCells[10][11] = conway.alive;
+    kokCells[10][12] = conway.alive;
+    kokCells[10][13] = conway.alive;
+    kokCells[10][14] = conway.alive;
+    kokCells[10][15] = conway.alive;
+    kokCells[11][10] = conway.alive;
+    kokCells[11][11] = conway.alive;
+    kokCells[11][12] = conway.alive;
+    kokCells[11][13] = conway.alive;
+    kokCells[11][14] = conway.alive;
+    kokCells[11][15] = conway.alive;
+
+    kokCells[13][10] = conway.alive;
+    kokCells[14][10] = conway.alive;
+    kokCells[15][10] = conway.alive;
+    kokCells[16][10] = conway.alive;
+    kokCells[17][10] = conway.alive;
+    kokCells[18][10] = conway.alive;
+    kokCells[13][11] = conway.alive;
+    kokCells[14][11] = conway.alive;
+    kokCells[15][11] = conway.alive;
+    kokCells[16][11] = conway.alive;
+    kokCells[17][11] = conway.alive;
+    kokCells[18][11] = conway.alive;
+
+    kokCells[17][13] = conway.alive;
+    kokCells[17][14] = conway.alive;
+    kokCells[17][15] = conway.alive;
+    kokCells[17][16] = conway.alive;
+    kokCells[17][17] = conway.alive;
+    kokCells[17][18] = conway.alive;
+    kokCells[18][13] = conway.alive;
+    kokCells[18][14] = conway.alive;
+    kokCells[18][15] = conway.alive;
+    kokCells[18][16] = conway.alive;
+    kokCells[18][17] = conway.alive;
+    kokCells[18][18] = conway.alive;
+
+    kokCells[10][17] = conway.alive;
+    kokCells[11][17] = conway.alive;
+    kokCells[12][17] = conway.alive;
+    kokCells[13][17] = conway.alive;
+    kokCells[14][17] = conway.alive;
+    kokCells[15][17] = conway.alive;
+    kokCells[10][18] = conway.alive;
+    kokCells[11][18] = conway.alive;
+    kokCells[12][18] = conway.alive;
+    kokCells[13][18] = conway.alive;
+    kokCells[14][18] = conway.alive;
+    kokCells[15][18] = conway.alive;
+
+
+    return kokCells;
+  }; // conway.newKokGalaxy()
+
+
 
   // Draws grid to screen using easeljs (side effects only)
   //  Draws dead and live cells w/ different colors
@@ -265,7 +326,7 @@ $(document).ready(function () {
 
   // Button event listeners
   // Start
-  $('#startButton').click(function () {
+  $('#start-button').click(function () {
     // Create event ticker, add handleTick() as callback to be called every tick
     createjs.Ticker.addEventListener("tick", updateAndDraw);
     // Unpauses
@@ -276,32 +337,37 @@ $(document).ready(function () {
   });
 
   // Pause
-  $('#pauseButton').click(function () {
+  $('#pause-button').click(function () {
     createjs.Ticker.paused = (!createjs.Ticker.paused) ? true : false;
   });
 
   // Step
-  $('#stepButton').click(function () {
+  $('#step-button').click(function () {
     // Updates stage and redraws
     cells = gameController.updateAll(cells);
     gameController.draw(cells);
   });
 
   // Clear
-  $('#clearButton').click(function () {
+  $('#clear-button').click(function () {
     // Clears stage and redraws. Removes tick event listener
     createjs.Ticker.removeEventListener("tick", updateAndDraw);
     cells = gameController.newEmptyArray();
     gameController.draw(cells);
   });
 
-  $('#gosperGun').click(function () {
+  $('#gosper-gun').click(function () {
     cells = gameController.newGosperGliderGun();
     gameController.draw(cells);
   });
 
-  $('#pentOsc').click(function () {
+  $('#pent-osc').click(function () {
     cells = gameController.newPentadecathlon();
+    gameController.draw(cells);
+  });
+
+  $('#kok-galaxy').click(function () {
+    cells = gameController.newKokGalaxy();
     gameController.draw(cells);
   });
 
