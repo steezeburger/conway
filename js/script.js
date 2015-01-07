@@ -33,6 +33,7 @@ function Conway(length) {
     return cells;
   }; // conway.newEmptyArray()
 
+  // Generate Gosper Glider Gun formation
   conway.newGosperGliderGun = function () {
     var gliderCells = conway.newEmptyArray();
     gliderCells[2][5] = conway.alive;
@@ -72,7 +73,35 @@ function Conway(length) {
     gliderCells[37][3] = conway.alive;
     gliderCells[37][4] = conway.alive;
     return gliderCells;
-  };
+  }; // conway.newGosperGliderGun()
+
+  // Generate Pentadecathlon formation
+  conway.newPentadecathlon = function () {
+    var pentCells = conway.newEmptyArray();
+    pentCells[10][10] = conway.alive;
+    pentCells[10][11] = conway.alive;
+    pentCells[10][12] = conway.alive;
+    pentCells[11][10] = conway.alive;
+    pentCells[11][12] = conway.alive;
+    pentCells[12][10] = conway.alive;
+    pentCells[12][11] = conway.alive;
+    pentCells[12][12] = conway.alive;
+    pentCells[13][10] = conway.alive;
+    pentCells[13][11] = conway.alive;
+    pentCells[13][12] = conway.alive;
+    pentCells[14][10] = conway.alive;
+    pentCells[14][11] = conway.alive;
+    pentCells[14][12] = conway.alive;
+    pentCells[15][10] = conway.alive;
+    pentCells[15][11] = conway.alive;
+    pentCells[15][12] = conway.alive;
+    pentCells[16][10] = conway.alive;
+    pentCells[16][12] = conway.alive;
+    pentCells[17][10] = conway.alive;
+    pentCells[17][11] = conway.alive;
+    pentCells[17][12] = conway.alive;
+    return pentCells;
+  }
 
   // Draws grid to screen using easeljs (side effects only)
   //  Draws dead and live cells w/ different colors
@@ -220,7 +249,6 @@ $(document).ready(function () {
   var gameController = new Conway(50);
   // Initalize to all dead cells
   var cells = gameController.newEmptyArray();
-//  var cells = gameController.newGosperGliderGun();
   // Create stage for easeljs as well as ticker
   gameController.stage = new createjs.Stage("gameController");
 
@@ -235,7 +263,7 @@ $(document).ready(function () {
     }
   }
 
-// Button event listeners
+  // Button event listeners
   // Start
   $('#startButton').click(function () {
     // Create event ticker, add handleTick() as callback to be called every tick
@@ -249,7 +277,7 @@ $(document).ready(function () {
 
   // Pause
   $('#pauseButton').click(function () {
-    createjs.Ticker.paused = (!createjs.Ticker.paused) ? true : false ;
+    createjs.Ticker.paused = (!createjs.Ticker.paused) ? true : false;
   });
 
   // Step
@@ -269,6 +297,11 @@ $(document).ready(function () {
 
   $('#gosperGun').click(function () {
     cells = gameController.newGosperGliderGun();
+    gameController.draw(cells);
+  });
+
+  $('#pentOsc').click(function () {
+    cells = gameController.newPentadecathlon();
     gameController.draw(cells);
   });
 

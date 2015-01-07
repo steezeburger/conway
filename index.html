@@ -17,32 +17,40 @@
 
 </head>
 
-<body class="center">
+<body>
 
   <h1 class="center">Conway's Game of Life</h1>
-  <p>
-    <ul>
-      <li>Create live cells by clicking anywhere on the grid or choose a pre-made formation from the side bar.</li>
-      <li>Click 'Step' to see the evolution one iteration at a time or 'Start' to watch the evolution progress in real time.</li>
-      <li>Click 'Pause' to start/stop the evolution.</li>
-      <li>'Clear' will stop the evolution and clear the grid of all live cells.</li>
-    </ul>
-   </p>
-  <div class="center">
-    <button id="startButton" type="button"><span>Start</span>
-    </button>
-    <button id="pauseButton" type="button"><span>Pause</span>
-    </button>
-    <button id="stepButton" type="button"><span>Step</span>
-    </button>
-    <button id="clearButton" type="button"><span>Clear</span>
-    </button>
+
+  <ul>
+    <li>Create live cells by clicking anywhere on the grid or choose a pre-made formation from the bottom menu.</li>
+    <li>Click 'Step' to see the evolution one iteration at a time or 'Start' to watch the evolution progress in real time.</li>
+    <li>Click 'Pause' to start/stop the evolution.</li>
+    <li>'Clear' will stop the evolution and clear the grid of all live cells.</li>
+  </ul>
+
+  <div class="controls">
+    <div class="center">
+      <button id="startButton" type="button"><span>Start</span>
+      </button>
+      <button id="pauseButton" type="button"><span>Pause</span>
+      </button>
+      <button id="stepButton" type="button"><span>Step</span>
+      </button>
+      <button id="clearButton" type="button"><span>Clear</span>
+      </button>
+    </div>
   </div>
+
+  <!-- Canvas Game Area -->
   <div class="center">
-    <canvas id="gameController" width="500" height="500"></canvas>
+    <canvas class="center" id="gameController" width="500" height="500"></canvas>
   </div>
+
   <div class="formation-menu">
+    <p>Pre-made Formations</p>
     <button id="gosperGun" type="button"><span>Gosper's Glider Gun</span>
+    </button>
+    <button id="pentOsc" type="button"><span>Pentadecathlon</span>
     </button>
   </div>
 
