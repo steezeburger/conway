@@ -1,5 +1,9 @@
+$font-main: 'Roboto', sans-serif;
+$primary-color: #999;
+$secondary-color: #666;
+
 html {
-  font-family: 'Roboto', sans-serif;
+  font-family: $font-main;
 }
 .center {
   margin-left: auto;
@@ -13,17 +17,17 @@ html {
 
 }
 .formation-menu button {
-  background: #999;
+  background: $primary-color;
   border: 0;
-  color: #666;
+  color: $secondary-color;
   margin-left: auto;
   margin-right: auto;
   padding: 8px 15px;
 }
 .controls button {
-  background: #999;
+  background: $primary-color;
   border: 0;
-  color: #666;
+  color: $secondary-color;
   display: inline-block;
   margin-left: 5px;
   margin-right: 5px;
@@ -34,7 +38,7 @@ canvas {
   padding: 20px;
 }
 body {
-  background-color: #666;
+  background-color: $secondary-color;
   margin-left: auto;
   margin-right: auto;
   position: relative;
@@ -47,7 +51,7 @@ h4,
 p,
 ul,
 li {
-  color: #999;
+  color: $primary-color;
 }
 ul,
 li {
