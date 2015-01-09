@@ -105,7 +105,7 @@ function Conway(length) {
     return pentCells;
   }; // conway.newPentadecathlon()
 
-  // Generate Pentadecathlon formation
+  // Generate Kok's Galaxy formation
   conway.newKokGalaxy = function () {
     var kokCells = conway.newEmptyArray();
     kokCells[10][10] = conway.alive;
@@ -244,7 +244,7 @@ function Conway(length) {
   // Returns number of live neighbors of cell at x, y
   conway.getNeighborCount = function (cellsArray, x, y) {
     // Start count at 0
-    var count = (cellsArray[x][y] == conway.alive) ? -1 : 0;
+    var count = (cellsArray[x][y] === conway.alive) ? -1 : 0;
     // Adds to count if any of the surrounding cells are alive
     // Traverses surrounding squares.
     // [x - 1][y - 1]  [x][y - 1]  [x + 1][y - 1]
@@ -252,7 +252,7 @@ function Conway(length) {
     // [x - 1][y + 1]  [x][y + 1]  [x + 1][y + 1]
     for (var w = -1; w <= 1; w++) {
       for (var h = -1; h <= 1; h++) {
-        if (cellsArray[(conway.width + (x + w)) % conway.width][(conway.height + (y + h)) % conway.height] == conway.alive) {
+        if (cellsArray[(conway.width + (x + w)) % conway.width][(conway.height + (y + h)) % conway.height] === conway.alive) {
           count++;
         }
       }
