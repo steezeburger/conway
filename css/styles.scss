@@ -10,32 +10,18 @@ html {
   margin-right: auto;
   text-align: center;
 }
-.formation-menu {
+.menu {
   display: block;
   margin-left: auto;
   margin-right: auto;
-
 }
 .formation-menu button {
   background: $primary-color;
-  border: 0;
   color: $secondary-color;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 8px 15px;
-}
-.controls button {
-  background: $primary-color;
-  border: 0;
-  color: $secondary-color;
-  display: inline-block;
-  margin-left: 5px;
-  margin-right: 5px;
-  padding: 8px 15px;
+  width: 100%;
 }
 canvas {
   display: inline-block;
-  padding: 20px;
 }
 body {
   background-color: $secondary-color;

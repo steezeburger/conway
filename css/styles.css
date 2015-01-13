@@ -9,36 +9,22 @@ html {
   text-align: center; }
 
 /* line 13, /home/js/code/conway/css/styles.scss */
-.formation-menu {
+.menu {
   display: block;
   margin-left: auto;
   margin-right: auto; }
 
-/* line 19, /home/js/code/conway/css/styles.scss */
+/* line 18, /home/js/code/conway/css/styles.scss */
 .formation-menu button {
   background: #999;
-  border: 0;
   color: #666;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 8px 15px; }
+  width: 100%; }
 
-/* line 27, /home/js/code/conway/css/styles.scss */
-.controls button {
-  background: #999;
-  border: 0;
-  color: #666;
-  display: inline-block;
-  margin-left: 5px;
-  margin-right: 5px;
-  padding: 8px 15px; }
-
-/* line 36, /home/js/code/conway/css/styles.scss */
+/* line 23, /home/js/code/conway/css/styles.scss */
 canvas {
-  display: inline-block;
-  padding: 20px; }
+  display: inline-block; }
 
-/* line 40, /home/js/code/conway/css/styles.scss */
+/* line 26, /home/js/code/conway/css/styles.scss */
 body {
   background-color: #666;
   margin-left: auto;
@@ -46,11 +32,11 @@ body {
   position: relative;
   width: 80%; }
 
-/* line 53, /home/js/code/conway/css/styles.scss */
+/* line 39, /home/js/code/conway/css/styles.scss */
 h1, h2, h3, h4, p, ul, li {
   color: #999; }
 
-/* line 57, /home/js/code/conway/css/styles.scss */
+/* line 43, /home/js/code/conway/css/styles.scss */
 ul, li {
   text-align: left; }
 

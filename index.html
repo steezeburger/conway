@@ -4,9 +4,14 @@
 <head>
   <title>Conway's Game of Life</title>
 
+  <!-- Foundation -->
+  <link rel="stylesheet" href="css/foundation.css">
+  <link rel="stylesheet" href="css/normalize.css">
+
   <!-- Styles and Fonts -->
   <link rel="stylesheet" type="text/css" href="css/styles.css">
   <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+
 
   <!-- External JS -->
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -19,41 +24,44 @@
 
 <body>
 
-  <h1 class="center">Conway's Game of Life</h1>
+  <div class="row">
+    <h1 class="center">Conway's Game of Life</h1>
 
-  <ul>
-    <li>Create live cells by clicking anywhere on the grid or choose a pre-made formation from the bottom menu.</li>
-    <li>Click 'Step' to see the evolution one iteration at a time or 'Start' to watch the evolution progress in real time.</li>
-    <li>Click 'Pause' to start/stop the evolution.</li>
-    <li>'Clear' will stop the evolution and clear the grid of all live cells.</li>
-  </ul>
+    <ul>
+      <li>Create live cells by clicking anywhere on the grid or choose a pre-made formation from the menu on the right.</li>
+      <li>Click 'Step' to see the evolution one iteration at a time or 'Start' to watch the evolution progress in real time.</li>
+      <li>Click 'Pause' to start/stop the evolution.</li>
+      <li>'Clear' will stop the evolution and clear the grid of all live cells.</li>
+    </ul>
 
-  <div class="controls">
-    <div class="center">
-      <button id="start-button" type="button"><span>Start</span>
-      </button>
-      <button id="pause-button" type="button"><span>Pause</span>
-      </button>
-      <button id="step-button" type="button"><span>Step</span>
-      </button>
-      <button id="clear-button" type="button"><span>Clear</span>
-      </button>
+    <!-- Canvas Game Area -->
+    <div class="center medium-8 columns">
+      <canvas class="center" id="gameController" width="500" height="500"></canvas>
     </div>
-  </div>
 
-  <!-- Canvas Game Area -->
-  <div class="center">
-    <canvas class="center" id="gameController" width="500" height="500"></canvas>
-  </div>
+    <div class="menu medium-4 columns">
+      <!-- Control Buttons -->
+      <p>Controls</p>
+      <button id="start-button" type="button" class="button secondary">Start
+      </button>
+      <button id="pause-button" type="button" class="button secondary">Pause
+      </button>
+      <button id="step-button" type="button" class="button secondary">Step
+      </button>
+      <button id="clear-button" type="button" class="button secondary">Clear
+      </button>
+      <!-- Formations Menu -->
+      <div class="formation-menu">
+        <p>Pre-made Formations</p>
+        <button id="gosper-gun" type="button" class="button secondary">Gosper's Glider Gun
+        </button>
+        <button id="pent-osc" type="button" class="button secondary">Pentadecathlon
+        </button>
+        <button id="kok-galaxy" type="button" class="button secondary">Kok's Galaxy
+        </button>
+      </div>
+    </div>
 
-  <div class="formation-menu">
-    <p>Pre-made Formations</p>
-    <button id="gosper-gun" type="button"><span>Gosper's Glider Gun</span>
-    </button>
-    <button id="pent-osc" type="button"><span>Pentadecathlon</span>
-    </button>
-    <button id="kok-galaxy" type="button"><span>Kok's Galaxy</span>
-    </button>
   </div>
 
 </body>
