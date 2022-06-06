@@ -12,7 +12,7 @@ function Conway(length) {
   conway.alive = 1;
   conway.dead = 0;
 
-  // Always a square
+  // Always a square for now, but can easily be rectangle
   conway.width = conway.height = length;
 
   //************
